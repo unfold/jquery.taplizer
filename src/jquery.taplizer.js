@@ -19,11 +19,15 @@ window.hasOwnProperty('ontouchstart') && (function() {
                 originalHandler.call(this, e);
             };
 
-            $(this).on(events.start, $.proxy(start, this));
+            handle.startHandle = function() {
+                start.apply(this, arguments);
+            };
+
+            $(this).on(events.start, handle.selector, handle.startHandle);
         },
 
-        remove: function() {
-            $(this).off(events.start, $.proxy(start, this));
+        remove: function(handle) {
+            $(this).off(events.start, handle.selector, handle.startHandle);
         }
     };
 

@@ -24,15 +24,23 @@
 
     <script>
         $(function() {
-            $('.button').on('click', function(e) {
-                console.log('Button click');
+            var handler1 = function(e) {
+                e.preventDefault();
+                $(e.currentTarget).remove();
+            };
+
+            var handler2 = function(e) {
                 e.preventDefault();
 
                 var hue = Math.round(Math.random() * 360);
                 var color = 'hsl(' + hue + ', 100%, 50%)';
 
                 $(e.currentTarget).css('background', color);
-            });
+            };
+
+            $('body').on('click', '.button', handler1);
+            $('body').on('click', '.button', handler2);
+            $('body').off('click', '.button', handler1);
         });
     </script>
 </body>
