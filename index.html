@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>jquery.taplizer example</title>
+
+    <style>
+        .button {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            margin-right: 20px;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <a href="" class="button"></a>
+    <a href="" class="button"></a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="src/jquery.taplizer.js"></script>
+
+    <script>
+        $(function() {
+            $('.button').on('click', function(e) {
+                console.log('Button click');
+                e.preventDefault();
+
+                var hue = Math.round(Math.random() * 360);
+                var color = 'hsl(' + hue + ', 100%, 50%)';
+
+                $(e.currentTarget).css('background', color);
+            });
+        });
+    </script>
+</body>
+</html>
